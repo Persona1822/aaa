@@ -1,0 +1,882 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Birthday Surprise 💜</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pacifico&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+  --pink: #ffb9d5;
+  --purple: #c8a8ff;
+  --dark: #171329;
+  --card: #231d3c;
+  --white: #fff8ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--dark);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, #fff 50%, transparent),
+    radial-gradient(2px 2px at 70% 20%, #e4baff 50%, transparent),
+    radial-gradient(2px 2px at 40% 80%, #fff 50%, transparent),
+    radial-gradient(2px 2px at 90% 65%, #ffb9d5 50%, transparent);
+  background-size: 250px 250px;
+  opacity: .5;
+  animation: twinkle 5s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .25; }
+  to { opacity: .7; }
+}
+
+section {
+  position: relative;
+  z-index: 1;
+  padding: 90px 20px;
+  text-align: center;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 20px;
+}
+
+.tag {
+  color: var(--pink);
+  letter-spacing: 4px;
+  font-size: 11px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 9vw, 75px);
+  line-height: 1.15;
+  max-width: 750px;
+}
+
+.gradient {
+  background: linear-gradient(90deg, #ffb9d5, #c8a8ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  color: #c8bedb;
+  margin: 22px 0 35px;
+  line-height: 1.8;
+  max-width: 440px;
+}
+
+.btn {
+  border: none;
+  padding: 15px 28px;
+  border-radius: 50px;
+  background: linear-gradient(120deg, #ffb9d5, #c8a8ff);
+  color: #24172f;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 8px 30px #d69aff30;
+  transition: .3s;
+}
+
+.btn:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 10px 35px #d69aff60;
+}
+
+.small-note {
+  color: #9186a7;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 6vw, 48px);
+  margin-bottom: 15px;
+}
+
+.description {
+  color: #b9aecb;
+  line-height: 1.8;
+  margin: auto;
+  max-width: 520px;
+}
+
+/* Envelope */
+
+.envelope-wrap {
+  margin: 45px auto 0;
+  max-width: 350px;
+  cursor: pointer;
+}
+
+.envelope {
+  height: 200px;
+  position: relative;
+  background: #c18ebc;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 15px 45px #0005;
+}
+
+.envelope:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  border-left: 175px solid transparent;
+  border-right: 175px solid transparent;
+  border-top: 115px solid #e8b1d6;
+  z-index: 2;
+}
+
+.envelope:after {
+  content: "💌";
+  position: absolute;
+  font-size: 45px;
+  z-index: 3;
+  top: 65px;
+}
+
+.envelope span {
+  position: absolute;
+  bottom: 12px;
+  color: #fff;
+  font-size: 12px;
+  z-index: 4;
+}
+
+.letter {
+  background: #fff2f7;
+  color: #49324f;
+  border-radius: 15px;
+  padding: 30px 24px;
+  margin: 25px auto 0;
+  max-width: 440px;
+  line-height: 1.9;
+  display: none;
+  animation: appear .7s ease;
+}
+
+.letter.show {
+  display: block;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Photos */
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  max-width: 750px;
+  margin: 45px auto 0;
+}
+
+.photo-card {
+  background: var(--card);
+  padding: 12px;
+  border: 1px solid #ffffff15;
+  border-radius: 18px;
+  transform: rotate(-2deg);
+  transition: .3s;
+}
+
+.photo-card:nth-child(2) {
+  transform: rotate(2deg);
+}
+
+.photo-card:hover {
+  transform: rotate(0) translateY(-8px);
+}
+
+.photo-frame {
+  height: 260px;
+  border: 2px dashed #a991cb;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #302644;
+  cursor: pointer;
+  position: relative;
+}
+
+.photo-frame input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.photo-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 0;
+}
+
+.photo-placeholder {
+  position: absolute;
+  z-index: 1;
+  color: #d0b9e9;
+  line-height: 2;
+  font-size: 14px;
+  padding: 10px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.photo-card p {
+  padding: 15px 5px 5px;
+  font-family: 'Playfair Display', serif;
+  color: var(--pink);
+}
+
+/* Memories */
+
+.memory-box {
+  max-width: 580px;
+  margin: 40px auto 0;
+  display: grid;
+  gap: 16px;
+}
+
+.memory {
+  padding: 20px;
+  background: #ffffff0a;
+  border: 1px solid #ffffff13;
+  border-radius: 14px;
+  text-align: left;
+  line-height: 1.7;
+  transition: .3s;
+}
+
+.memory:hover {
+  background: #ffffff16;
+}
+
+.memory strong {
+  color: var(--pink);
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Cake */
+
+.cake-area {
+  margin: 45px auto;
+  cursor: pointer;
+  width: fit-content;
+  position: relative;
+}
+
+.cake {
+  font-size: 125px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.candle-message {
+  color: var(--pink);
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* Final surprise */
+
+.final-card {
+  max-width: 600px;
+  margin: 35px auto 0;
+  padding: 40px 25px;
+  background: linear-gradient(145deg, #332647, #241d3d);
+  border: 1px solid #ffffff20;
+  border-radius: 25px;
+  display: none;
+  animation: appear .8s ease;
+}
+
+.final-card.show {
+  display: block;
+}
+
+.final-card h3 {
+  font-family: 'Pacifico', cursive;
+  font-size: 30px;
+  color: var(--pink);
+  margin-bottom: 20px;
+}
+
+.final-card p {
+  color: #ddd0e9;
+  line-height: 2;
+}
+
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 35px 15px;
+  color: #9285a9;
+  font-size: 12px;
+}
+
+.heart {
+  color: #ff9fc9;
+  display: inline-block;
+  animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+  50% { transform: scale(1.3); }
+}
+
+/* Confetti */
+
+.confetti {
+  position: fixed;
+  top: -15px;
+  width: 9px;
+  height: 13px;
+  z-index: 20;
+  pointer-events: none;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Mobile responsive */
+
+@media(max-width:550px) {
+  section {
+    padding: 70px 18px;
+  }
+
+  .photos {
+    gap: 12px;
+  }
+
+  .photo-frame {
+    height: 180px;
+  }
+
+  .photo-card {
+    padding: 8px;
+  }
+
+  .cake {
+    font-size: 100px;
+  }
+}
+
+@media(max-width:350px) {
+  .photos {
+    grid-template-columns: 1fr;
+    max-width: 280px;
+  }
+
+  .photo-frame {
+    height: 250px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="tag">A LITTLE SOMETHING FOR YOU ✨</div>
+
+  <h1>
+    Happy Birthday <span class="gradient">Diya</span> 🎀
+  </h1>
+
+  <p class="subtitle">
+    Today isn't just another day.
+    Someone special deserves a little extra happiness.
+    So, I made something for you...
+  </p>
+
+  <button class="btn" onclick="goTo('letter')">
+    Open Your Surprise 💌
+  </button>
+
+  <div class="small-note">
+    Made with friendship & a little magic ♡
+  </div>
+
+</section>
+
+<!-- LETTER -->
+<section id="letter">
+
+  <div class="tag">01 — A LITTLE MESSAGE</div>
+
+  <h2>A Letter For You 💌</h2>
+
+  <p class="description">
+    There's something I wanted to tell you...
+  </p>
+
+  <div class="envelope-wrap" onclick="openLetter()">
+    <div class="envelope">
+      <span>Tap to open</span>
+    </div>
+  </div>
+
+  <div class="letter" id="letterContent">
+
+    <h3 style="font-family:Pacifico;color:#ad70a8;margin-bottom:15px">
+      Dear Friend,
+    </h3>
+
+    Some people enter our lives and make ordinary
+    moments a little more special.
+
+    <br><br>
+
+    I'm genuinely glad to have you as a friend.
+    We haven't known each other that well, but
+    I will make sure we cherish this journey.
+
+    <br><br>
+
+    I hope this new chapter brings you happiness,
+    success, adventures and everything your heart wishes for.
+
+    <br><br>
+
+    Keep smiling, keep shining and never change! 💗
+
+    <br><br>
+
+    <strong>Happy Birthday! 🎂</strong>
+
+  </div>
+
+</section>
+<!-- PHOTOS -->
+<section id="photos">
+
+  <div class="tag">02 — OUR LITTLE CORNER</div>
+
+  <h2>Some Memories 📸</h2>
+
+  <p class="description">
+    Two little spaces for two special memories.
+  </p>
+
+  <div class="photos">
+
+    <!-- PHOTO 1 -->
+    <div class="photo-card">
+      <div class="photo-frame">
+        <img src="images/photo1.jpeg" alt="Our memory" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <p>Memory No. 01 ♡</p>
+    </div>
+
+    <!-- PHOTO 2 -->
+    <div class="photo-card">
+      <div class="photo-frame">
+        <img src="images/photo2.jpeg" alt="Another memory" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <p>Memory No. 02 ♡</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- MEMORIES -->
+<section>
+
+  <div class="tag">03 — THE FRIENDSHIP CHAPTER</div>
+
+  <h2>Little Things That Matter 💜</h2>
+
+  <div class="memory-box">
+
+    <div class="memory">
+      <strong>✦ The Random Conversations</strong>
+      Those conversations that start with nothing
+      and somehow become the best part of the day.
+    </div>
+
+    <div class="memory">
+      <strong>✦ The Unplanned Moments</strong>
+      Sometimes the best memories are the ones
+      we never planned.
+    </div>
+
+    <div class="memory">
+      <strong>✦ More Adventures Ahead</strong>
+      There are still so many memories waiting
+      to be made. Here's to all of them!
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CAKE -->
+<section id="cakeSection">
+
+  <div class="tag">04 — MAKE A WISH</div>
+
+  <h2>Time For Some Cake! 🎂</h2>
+
+  <p class="description">
+    Close your eyes, make a wish and tap the cake!
+  </p>
+
+  <div class="cake-area" onclick="blowCandles()">
+    <div class="cake" id="cake">🎂</div>
+  </div>
+
+  <button class="btn" onclick="blowCandles()">
+    Blow The Candles ✨
+  </button>
+
+  <p class="candle-message" id="cakeMessage">
+    Your wish is waiting... 💫
+  </p>
+
+</section>
+
+<!-- FINAL -->
+<section id="final">
+
+  <div class="tag">05 — ONE LAST THING</div>
+
+  <h2>Wait... There's More! 💗</h2>
+
+  <p class="description">
+    You've reached the end, but the birthday magic
+    isn't over yet.
+  </p>
+
+  <br>
+
+  <button class="btn" onclick="revealFinal()">
+    Reveal Your Final Surprise 🎁
+  </button>
+
+  <div class="final-card" id="finalCard">
+
+    <h3>Happy Birthday! 🥳</h3>
+
+    <p>
+      I hope you never run out of reasons to smile.
+
+      <br>
+
+      May life surprise you with beautiful moments,
+      amazing opportunities and wonderful people.
+
+      <br><br>
+
+      Thank you for being YOU.
+
+      <br>
+
+      Here's to another year of laughter,
+      chaos, friendship and unforgettable memories!
+
+      <br><br>
+
+      <span class="heart">♥</span>
+
+      Always stay awesome!
+
+      <br><br>
+
+      With lots of love and friendship,
+
+      <br>
+
+      Your Friend 💜
+    </p>
+
+  </div>
+
+</section>
+
+<footer>
+
+  Made with <span class="heart">♥</span> and a little bit of magic.
+
+  <br><br>
+
+  This little website is just for you ✨
+
+</footer>
+
+<script>
+
+// Cute pop sound using Web Audio API
+
+let audioContext;
+
+function popSound() {
+
+  try {
+
+    audioContext = audioContext ||
+      new (window.AudioContext || window.webkitAudioContext)();
+
+    if (audioContext.state === 'suspended') {
+      audioContext.resume();
+    }
+
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.type = 'sine';
+
+    oscillator.frequency.setValueAtTime(
+      650, audioContext.currentTime
+    );
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+      250, audioContext.currentTime + 0.12
+    );
+
+    gain.gain.setValueAtTime(
+      0.13, audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      0.001, audioContext.currentTime + 0.15
+    );
+
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + 0.15);
+
+  } catch(e) {}
+
+}
+
+// Button navigation
+
+function goTo(id) {
+
+  popSound();
+
+  document.getElementById(id).scrollIntoView({
+    behavior: 'smooth'
+  });
+
+}
+
+// Open envelope
+
+function openLetter() {
+
+  popSound();
+
+  const letter = document.getElementById('letterContent');
+
+  letter.classList.toggle('show');
+
+  if(letter.classList.contains('show')) {
+
+    setTimeout(() => {
+
+      letter.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+
+    }, 150);
+
+  }
+
+}
+
+// Upload photos
+
+function loadPhoto(event, id) {
+
+  const file = event.target.files[0];
+
+  if(!file) return;
+
+  if(!file.type.startsWith('image/')) {
+    alert('Please select an image!');
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+
+    const img = document.getElementById(id);
+
+    img.src = e.target.result;
+    img.style.display = 'block';
+
+    const number = id === 'photo1' ? '1' : '2';
+
+    const placeholder = document.getElementById(
+      'placeholder' + number
+    );
+
+    if(placeholder) {
+      placeholder.style.display = 'none';
+    }
+
+    popSound();
+
+  };
+
+  reader.readAsDataURL(file);
+
+}
+
+// Cake interaction
+
+let candlesBlown = false;
+
+function blowCandles() {
+
+  popSound();
+
+  if(candlesBlown) return;
+
+  candlesBlown = true;
+
+  document.getElementById('cake').innerHTML = '🍰';
+
+  document.getElementById('cakeMessage').innerHTML =
+    'Wish made! May all your dreams come true! 💫';
+
+  confetti();
+
+}
+
+// Final surprise
+
+function revealFinal() {
+
+  popSound();
+
+  const card = document.getElementById('finalCard');
+
+  card.classList.add('show');
+
+  confetti();
+
+  setTimeout(() => {
+
+    card.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    });
+
+  }, 100);
+
+}
+
+// Confetti animation
+
+function confetti() {
+
+  const symbols = ['💜', '💗', '✨', '🎉', '🌸'];
+
+  for(let i = 0; i < 65; i++) {
+
+    const piece = document.createElement('div');
+
+    piece.className = 'confetti';
+
+    piece.innerHTML =
+      symbols[Math.floor(Math.random() * symbols.length)];
+
+    piece.style.left = Math.random() * 100 + 'vw';
+
+    piece.style.animationDelay =
+      Math.random() * 1.5 + 's';
+
+    piece.style.fontSize =
+      (12 + Math.random() * 14) + 'px';
+
+    document.body.appendChild(piece);
+
+    setTimeout(() => piece.remove(), 5000);
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
